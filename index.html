@@ -1,0 +1,359 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); }
+.header { background: #1a1a2e; color: #fff; padding: 18px 24px; border-radius: var(--border-radius-lg); margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+.header-left h1 { font-size: 20px; font-weight: 500; color: #fff; }
+.header-left p { font-size: 13px; color: #a0aec0; margin-top: 4px; }
+.badge { background: #2563eb; color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+.tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.tab { padding: 8px 18px; border-radius: 20px; font-size: 13px; cursor: pointer; border: 0.5px solid var(--color-border-secondary); background: var(--color-background-secondary); color: var(--color-text-secondary); transition: all 0.15s; }
+.tab.active { background: #1a1a2e; color: #fff; border-color: #1a1a2e; }
+.tab:hover:not(.active) { background: var(--color-background-tertiary); }
+.section { display: none; }
+.section.active { display: block; }
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.metric-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 16px; }
+.metric-label { font-size: 11px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+.metric-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+.metric-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; }
+.metric-status { font-size: 11px; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 6px; }
+.status-critical { background: #fee2e2; color: #991b1b; }
+.status-high { background: #fef3c7; color: #92400e; }
+.status-medium { background: #dbeafe; color: #1e40af; }
+.status-low { background: #d1fae5; color: #065f46; }
+.charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.chart-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 16px; }
+.chart-card.full { grid-column: 1 / -1; }
+.chart-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+.chart-sub { font-size: 11px; color: var(--color-text-secondary); margin-bottom: 14px; }
+.legend-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 10px; font-size: 11px; color: var(--color-text-secondary); }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; margin-right: 4px; vertical-align: middle; }
+@media (max-width: 600px) { .charts-row { grid-template-columns: 1fr; } }
+</style>
+
+<h2 class="sr-only">British Airways FY24 ESG Dashboard — Sahil Chalke 22102B0050</h2>
+
+<div class="header">
+  <div class="header-left">
+    <h1>British Airways — FY24 ESG Dashboard</h1>
+    <p>Sahil Chalke &nbsp;|&nbsp; 22102B0050</p>
+  </div>
+  <span class="badge">ESG Audit FY2024</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('env')">Environment</div>
+  <div class="tab" onclick="showTab('social')">Social</div>
+  <div class="tab" onclick="showTab('gov')">Governance</div>
+  <div class="tab" onclick="showTab('supply')">Supply Chain</div>
+</div>
+
+<!-- ENVIRONMENT -->
+<div class="section active" id="env">
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="metric-label">Net Zero Target</div><div class="metric-value">2050</div><div class="metric-sub">GHG Scope 1, 2, 3</div><span class="metric-status status-critical">Critical</span></div>
+    <div class="metric-card"><div class="metric-label">SAF Usage</div><div class="metric-value">&lt;2%</div><div class="metric-sub">of total fuel</div><span class="metric-status status-critical">Critical</span></div>
+    <div class="metric-card"><div class="metric-label">Renewable Energy</div><div class="metric-value">Partial</div><div class="metric-sub">across hubs</div><span class="metric-status status-high">High</span></div>
+    <div class="metric-card"><div class="metric-label">Waste Diversion</div><div class="metric-value">90%</div><div class="metric-sub">diversion target</div><span class="metric-status status-medium">Medium</span></div>
+    <div class="metric-card"><div class="metric-label">Scope 3 Coverage</div><div class="metric-value">~80%</div><div class="metric-sub">supplier reporting</div><span class="metric-status status-high">High</span></div>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">Environmental Themes — Priority Distribution</div>
+      <div class="chart-sub">Count of audit areas by risk priority level</div>
+      <div class="legend-row">
+        <span><span class="legend-dot" style="background:#ef4444;"></span>Critical</span>
+        <span><span class="legend-dot" style="background:#f59e0b;"></span>High</span>
+        <span><span class="legend-dot" style="background:#3b82f6;"></span>Medium</span>
+        <span><span class="legend-dot" style="background:#10b981;"></span>Low</span>
+      </div>
+      <div style="position:relative;width:100%;height:200px;"><canvas id="envPriority" role="img" aria-label="Pie chart of environmental audit area priorities: 4 Critical, 4 High, 9 Medium, 2 Low">Critical 4, High 4, Medium 9, Low 2.</canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">ESG Theme Coverage — Audit Areas by Theme</div>
+      <div class="chart-sub">Number of audit areas per environmental theme</div>
+      <div class="legend-row"><span><span class="legend-dot" style="background:#2563eb;"></span>Audit areas</span></div>
+      <div style="position:relative;width:100%;height:200px;"><canvas id="envThemes" role="img" aria-label="Bar chart of audit areas per environmental theme">Carbon Emissions 2, Energy 3, Value Chain 3, Water 2, Waste 3, Materials 1, Products 1, Ecosystems 2.</canvas></div>
+    </div>
+    <div class="chart-card full">
+      <div class="chart-title">Environmental Audit Areas — Priority Heatmap by Theme</div>
+      <div class="chart-sub">All 21 audit areas mapped by theme and priority</div>
+      <div class="legend-row">
+        <span><span class="legend-dot" style="background:#ef4444;"></span>Critical</span>
+        <span><span class="legend-dot" style="background:#f59e0b;"></span>High</span>
+        <span><span class="legend-dot" style="background:#3b82f6;"></span>Medium</span>
+        <span><span class="legend-dot" style="background:#10b981;"></span>Low</span>
+      </div>
+      <div style="position:relative;width:100%;height:260px;"><canvas id="envHeatmap" role="img" aria-label="Horizontal stacked bar showing priority breakdown across environmental themes">Stacked breakdown of Critical, High, Medium, Low by theme.</canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL -->
+<div class="section" id="social">
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="metric-label">Women Overall</div><div class="metric-value">~43%</div><div class="metric-sub">Global workforce</div><span class="metric-status status-medium">Medium</span></div>
+    <div class="metric-card"><div class="metric-label">Women Technical</div><div class="metric-value">~18%</div><div class="metric-sub">Engineering & pilots</div><span class="metric-status status-high">High</span></div>
+    <div class="metric-card"><div class="metric-label">Women Executives</div><div class="metric-value">~30%</div><div class="metric-sub">vs. parity goal</div><span class="metric-status status-high">High</span></div>
+    <div class="metric-card"><div class="metric-label">Ethnic Minority</div><div class="metric-value">~18%</div><div class="metric-sub">UK workforce</div><span class="metric-status status-medium">Medium</span></div>
+    <div class="metric-card"><div class="metric-label">Gender Pay Gap</div><div class="metric-value">~22%</div><div class="metric-sub">Median (UK)</div><span class="metric-status status-high">High</span></div>
+    <div class="metric-card"><div class="metric-label">Engagement Index</div><div class="metric-value">~78%</div><div class="metric-sub">Target &gt;80%</div><span class="metric-status status-medium">Medium</span></div>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">Women Representation by Level</div>
+      <div class="chart-sub">Current % vs benchmark/target across workforce levels</div>
+      <div class="legend-row"><span><span class="legend-dot" style="background:#8b5cf6;"></span>Current %</span><span><span class="legend-dot" style="background:#d1d5db;"></span>Target</span></div>
+      <div style="position:relative;width:100%;height:220px;"><canvas id="womenChart" role="img" aria-label="Grouped bar chart showing women representation at each workforce level">Overall 43%, Technical 18%, Executives 30%, Senior Mgmt improving, Managers 34%.</canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Diversity & Inclusion Metrics</div>
+      <div class="chart-sub">Representation % across diversity dimensions (UK)</div>
+      <div class="legend-row"><span><span class="legend-dot" style="background:#0ea5e9;"></span>Current %</span></div>
+      <div style="position:relative;width:100%;height:220px;"><canvas id="diversityChart" role="img" aria-label="Horizontal bar chart showing diversity percentages">Ethnic minority 18%, Leadership ethnic 12%, Disability UK 7.5%, LGBTQ+ 6.5%, Veterans 4%.</canvas></div>
+    </div>
+    <div class="chart-card full">
+      <div class="chart-title">Training Completion & Risk Levels by Category</div>
+      <div class="chart-sub">Social risk level across all categories (Low / Medium / High / Critical)</div>
+      <div class="legend-row">
+        <span><span class="legend-dot" style="background:#ef4444;"></span>High</span>
+        <span><span class="legend-dot" style="background:#f59e0b;"></span>Medium</span>
+        <span><span class="legend-dot" style="background:#10b981;"></span>Low</span>
+      </div>
+      <div style="position:relative;width:100%;height:240px;"><canvas id="socialRisk" role="img" aria-label="Bar chart of risk levels by social category">Risk distribution across social categories.</canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- GOVERNANCE -->
+<div class="section" id="gov">
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="metric-label">FY25 Revenue</div><div class="metric-value">~£13B</div><div class="metric-sub">Strong recovery</div><span class="metric-status status-medium">Medium</span></div>
+    <div class="metric-card"><div class="metric-label">Operating Profit</div><div class="metric-value">~£1.85B</div><div class="metric-sub">IAG Annual Report</div><span class="metric-status status-low">Low</span></div>
+    <div class="metric-card"><div class="metric-label">Load Factor</div><div class="metric-value">~84%</div><div class="metric-sub">Passenger demand</div><span class="metric-status status-low">Low</span></div>
+    <div class="metric-card"><div class="metric-label">Board Diversity</div><div class="metric-value">~47%</div><div class="metric-sub">Gender & ethnicity</div><span class="metric-status status-low">Low</span></div>
+    <div class="metric-card"><div class="metric-label">Women Directors</div><div class="metric-value">~36%</div><div class="metric-sub">Above UK minimum</div><span class="metric-status status-low">Low</span></div>
+    <div class="metric-card"><div class="metric-label">Code of Conduct</div><div class="metric-value">&gt;99%</div><div class="metric-sub">Training completion</div><span class="metric-status status-low">Low</span></div>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">Governance Risk Level Distribution</div>
+      <div class="chart-sub">Across all 26 governance audit areas</div>
+      <div class="legend-row">
+        <span><span class="legend-dot" style="background:#ef4444;"></span>Critical</span>
+        <span><span class="legend-dot" style="background:#f59e0b;"></span>High</span>
+        <span><span class="legend-dot" style="background:#3b82f6;"></span>Medium</span>
+        <span><span class="legend-dot" style="background:#10b981;"></span>Low</span>
+      </div>
+      <div style="position:relative;width:100%;height:220px;"><canvas id="govRisk" role="img" aria-label="Doughnut chart of governance risk levels">Critical 1, High 3, Medium 7, Low 15.</canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Financial Performance Snapshot</div>
+      <div class="chart-sub">Key financial metrics FY24–25 (£B / %)</div>
+      <div class="legend-row"><span><span class="legend-dot" style="background:#6366f1;"></span>Revenue (£B)</span><span><span class="legend-dot" style="background:#10b981;"></span>Op. Profit (£B)</span></div>
+      <div style="position:relative;width:100%;height:220px;"><canvas id="financeChart" role="img" aria-label="Bar chart showing revenue and operating profit">Revenue ~£13.5B, Operating Profit ~£1.85B.</canvas></div>
+    </div>
+    <div class="chart-card full">
+      <div class="chart-title">Board & Governance Structure — Compliance Status by Area</div>
+      <div class="chart-sub">Status across Board Structure, Ethics, Cybersecurity, Privacy, and Technology Risk</div>
+      <div class="legend-row">
+        <span><span class="legend-dot" style="background:#ef4444;"></span>Critical</span>
+        <span><span class="legend-dot" style="background:#f59e0b;"></span>High</span>
+        <span><span class="legend-dot" style="background:#3b82f6;"></span>Medium</span>
+        <span><span class="legend-dot" style="background:#10b981;"></span>Low</span>
+      </div>
+      <div style="position:relative;width:100%;height:260px;"><canvas id="govArea" role="img" aria-label="Stacked bar chart showing risk distribution across governance areas">Breakdown per governance area.</canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPLY CHAIN -->
+<div class="section" id="supply">
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="metric-label">Supplier Code Coverage</div><div class="metric-value">~100%</div><div class="metric-sub">Tier-1 suppliers</div><span class="metric-status status-low">Low</span></div>
+    <div class="metric-card"><div class="metric-label">Scope 3 Coverage</div><div class="metric-value">~80%</div><div class="metric-sub">Supplier reporting</div><span class="metric-status status-medium">Medium</span></div>
+    <div class="metric-card"><div class="metric-label">Forced Labour</div><div class="metric-value">Zero</div><div class="metric-sub">Tolerance policy</div><span class="metric-status status-critical">Critical</span></div>
+    <div class="metric-card"><div class="metric-label">Plastic Reduction</div><div class="metric-value">&gt;90%</div><div class="metric-sub">Single-use removed</div><span class="metric-status status-low">Low</span></div>
+    <div class="metric-card"><div class="metric-label">CAP Closure Rate</div><div class="metric-value">~100%</div><div class="metric-sub">Within SLA</div><span class="metric-status status-low">Low</span></div>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">Supply Chain Risk Level Distribution</div>
+      <div class="chart-sub">Across 25 supply chain assessment areas</div>
+      <div class="legend-row">
+        <span><span class="legend-dot" style="background:#ef4444;"></span>Critical</span>
+        <span><span class="legend-dot" style="background:#f59e0b;"></span>High</span>
+        <span><span class="legend-dot" style="background:#3b82f6;"></span>Medium</span>
+        <span><span class="legend-dot" style="background:#10b981;"></span>Low</span>
+      </div>
+      <div style="position:relative;width:100%;height:220px;"><canvas id="scRisk" role="img" aria-label="Pie chart of supply chain risk levels">Critical 1, High 7, Medium 7, Low 10.</canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">High-Risk Applicable Areas</div>
+      <div class="chart-sub">Supply chain areas flagged as high-risk applicable (Yes/No)</div>
+      <div class="legend-row"><span><span class="legend-dot" style="background:#ef4444;"></span>High Risk: Yes</span><span><span class="legend-dot" style="background:#10b981;"></span>High Risk: No</span></div>
+      <div style="position:relative;width:100%;height:220px;"><canvas id="scHighRisk" role="img" aria-label="Doughnut chart showing 15 areas are high risk applicable vs 10 not">High Risk Applicable: 15, Not Applicable: 10.</canvas></div>
+    </div>
+    <div class="chart-card full">
+      <div class="chart-title">Supply Chain Categories — Risk Level Breakdown</div>
+      <div class="chart-sub">Risk profile across Emissions, Labour, Human Rights, Diversity, Logistics, and more</div>
+      <div class="legend-row">
+        <span><span class="legend-dot" style="background:#ef4444;"></span>Critical/High</span>
+        <span><span class="legend-dot" style="background:#3b82f6;"></span>Medium</span>
+        <span><span class="legend-dot" style="background:#10b981;"></span>Low</span>
+      </div>
+      <div style="position:relative;width:100%;height:300px;"><canvas id="scCats" role="img" aria-label="Horizontal stacked bar chart showing supply chain risk by category">Risk breakdown across supply chain categories.</canvas></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const COLORS = { critical:'#ef4444', high:'#f59e0b', medium:'#3b82f6', low:'#10b981' };
+const defaultOpts = { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } } };
+
+function pieChart(id, labels, data, colors) {
+  new Chart(document.getElementById(id), {
+    type:'doughnut',
+    data:{ labels, datasets:[{ data, backgroundColor:colors, borderWidth:2, borderColor:'#fff' }] },
+    options:{ ...defaultOpts, cutout:'50%', plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label:(c)=>` ${c.label}: ${c.raw}` } } } }
+  });
+}
+
+function barChart(id, labels, datasets, opts={}) {
+  new Chart(document.getElementById(id), {
+    type:'bar',
+    data:{ labels, datasets },
+    options:{ ...defaultOpts, ...opts, plugins:{ legend:{ display:false }, tooltip:{} } }
+  });
+}
+
+/* ENV PRIORITY PIE */
+pieChart('envPriority',
+  ['Critical','High','Medium','Low'],
+  [4,4,9,2],
+  [COLORS.critical, COLORS.high, COLORS.medium, COLORS.low]
+);
+
+/* ENV THEMES BAR */
+barChart('envThemes',
+  ['Carbon\nEmissions','Energy','Value\nChain','Water','Waste','Materials','Products','Ecosystems'],
+  [{ label:'Audit Areas', data:[2,3,3,2,3,1,1,2], backgroundColor:'#2563eb', borderRadius:4 }],
+  { scales:{ x:{ ticks:{ font:{size:11}, autoSkip:false }, grid:{display:false} }, y:{ beginAtZero:true, ticks:{ stepSize:1 }, title:{ display:true, text:'Count', font:{size:11} } } } }
+);
+
+/* ENV HEATMAP STACKED BAR */
+barChart('envHeatmap',
+  ['Carbon Emissions','Energy','Value Chain','Efficiency','Water','Waste','Materials','Products','Ecosystems'],
+  [
+    { label:'Critical', data:[2,0,2,0,0,0,0,0,0], backgroundColor:COLORS.critical, borderRadius:0 },
+    { label:'High',     data:[0,2,0,0,0,0,0,0,1], backgroundColor:COLORS.high, borderRadius:0 },
+    { label:'Medium',   data:[0,1,1,1,2,2,1,0,1], backgroundColor:COLORS.medium, borderRadius:0 },
+    { label:'Low',      data:[0,0,0,0,0,1,0,1,0], backgroundColor:COLORS.low, borderRadius:0 }
+  ],
+  { indexAxis:'y', scales:{ x:{ stacked:true, ticks:{stepSize:1}, title:{display:true,text:'Audit Areas',font:{size:11}} }, y:{ stacked:true, ticks:{font:{size:11}} } } }
+);
+
+/* SOCIAL WOMEN GROUPED BAR */
+new Chart(document.getElementById('womenChart'), {
+  type:'bar',
+  data:{
+    labels:['Overall','Technical','Executives','Managers'],
+    datasets:[
+      { label:'Current %', data:[43,18,30,34], backgroundColor:'#8b5cf6', borderRadius:4 },
+      { label:'Target', data:[50,30,50,50], backgroundColor:'#d1d5db', borderRadius:4 }
+    ]
+  },
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:(c)=>`${c.dataset.label}: ${c.raw}%` } } }, scales:{ x:{ grid:{display:false}, ticks:{font:{size:11}} }, y:{ beginAtZero:true, max:60, ticks:{ callback:(v)=>v+'%', font:{size:11} }, title:{display:true,text:'%',font:{size:11}} } } }
+});
+
+/* DIVERSITY HORIZONTAL BAR */
+new Chart(document.getElementById('diversityChart'), {
+  type:'bar',
+  data:{
+    labels:['Ethnic Min.\n(UK)','Ethnic Min.\nLeaders','Disability\n(UK)','LGBTQ+\n(UK)','Veterans'],
+    datasets:[{ label:'Current %', data:[18,12,7.5,6.5,4], backgroundColor:'#0ea5e9', borderRadius:4 }]
+  },
+  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:(c)=>`${c.raw}%` } } }, scales:{ x:{ beginAtZero:true, max:25, ticks:{ callback:(v)=>v+'%', font:{size:11} } }, y:{ ticks:{font:{size:11}} } } }
+});
+
+/* SOCIAL RISK STACKED BAR */
+barChart('socialRisk',
+  ['Workforce','Leadership','Management','Inclusion','Pay Equity','Training','Culture','Hiring','Wellbeing','Community'],
+  [
+    { label:'High',   data:[1,1,0,0,1,0,0,1,1,0], backgroundColor:COLORS.high },
+    { label:'Medium', data:[1,1,0,2,1,0,1,0,0,0], backgroundColor:COLORS.medium },
+    { label:'Low',    data:[0,0,1,2,0,2,0,0,0,1], backgroundColor:COLORS.low }
+  ],
+  { scales:{ x:{ stacked:true, ticks:{font:{size:10}}, grid:{display:false} }, y:{ stacked:true, beginAtZero:true, ticks:{stepSize:1}, title:{display:true,text:'Count',font:{size:11}} } } }
+);
+
+/* GOV RISK DOUGHNUT */
+pieChart('govRisk',
+  ['Critical','High','Medium','Low'],
+  [1,3,7,15],
+  [COLORS.critical, COLORS.high, COLORS.medium, COLORS.low]
+);
+
+/* FINANCE CHART */
+new Chart(document.getElementById('financeChart'), {
+  type:'bar',
+  data:{
+    labels:['Revenue (£B)','Op. Profit (£B)','Load Factor (%)'],
+    datasets:[{ label:'Value', data:[13.5,1.85,84], backgroundColor:['#6366f1','#10b981','#0ea5e9'], borderRadius:4 }]
+  },
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{ callbacks:{ label:(c)=>`${c.label}: ${c.raw}` } } }, scales:{ x:{ grid:{display:false}, ticks:{font:{size:11}} }, y:{ beginAtZero:true, ticks:{font:{size:11}} } } }
+});
+
+/* GOV AREA STACKED */
+barChart('govArea',
+  ['Financial\nPerf.','Investment','Board\nStructure','Board\nDiversity','Ethics','Cybersecurity','Privacy','Tech Risk'],
+  [
+    { label:'Critical', data:[0,0,0,0,0,1,0,0], backgroundColor:COLORS.critical },
+    { label:'High',     data:[0,1,0,0,0,1,0,1], backgroundColor:COLORS.high },
+    { label:'Medium',   data:[1,1,0,0,1,0,1,0], backgroundColor:COLORS.medium },
+    { label:'Low',      data:[1,0,2,2,1,1,1,0], backgroundColor:COLORS.low }
+  ],
+  { scales:{ x:{ stacked:true, ticks:{font:{size:10}}, grid:{display:false} }, y:{ stacked:true, beginAtZero:true, ticks:{stepSize:1}, title:{display:true,text:'Count',font:{size:11}} } } }
+);
+
+/* SUPPLY CHAIN RISK PIE */
+pieChart('scRisk',
+  ['Critical','High','Medium','Low'],
+  [1,7,7,10],
+  [COLORS.critical, COLORS.high, COLORS.medium, COLORS.low]
+);
+
+/* HIGH RISK APPLICABLE */
+pieChart('scHighRisk',
+  ['High Risk: Yes','High Risk: No'],
+  [15,10],
+  [COLORS.critical, COLORS.low]
+);
+
+/* SUPPLY CHAIN CATEGORIES */
+new Chart(document.getElementById('scCats'), {
+  type:'bar',
+  data:{
+    labels:['Supplier\nStandards','Emissions','Human\nRights','Labour\nStandards','Logistics','Diversity','Packaging','Circularity','Raw\nMaterials'],
+    datasets:[
+      { label:'Critical/High', data:[0,2,2,0,2,0,0,0,1], backgroundColor:COLORS.critical, borderRadius:0 },
+      { label:'Medium',        data:[0,1,0,2,1,0,0,0,0], backgroundColor:COLORS.medium, borderRadius:0 },
+      { label:'Low',           data:[2,0,0,0,0,4,2,1,0], backgroundColor:COLORS.low, borderRadius:0 }
+    ]
+  },
+  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ x:{ stacked:true, ticks:{stepSize:1,font:{size:11}}, title:{display:true,text:'Assessment Areas',font:{size:11}} }, y:{ stacked:true, ticks:{font:{size:11}} } } }
+});
+
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
